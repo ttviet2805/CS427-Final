@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Pistol : MonoBehaviour
 {
-    // Maginzine maximum ammo capacity
+    // Number of cartridge
     public int maxAmmoInMag = 15;
     // Maximum ammo capacity in the storage
     public int maxAmmoInStorage = 0;

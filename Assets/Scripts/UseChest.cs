@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class UseChest : MonoBehaviour {
-    private GameObject OB;
+    private GameObject curObject;
     public GameObject handUI;
     public GameObject objToActivate;
 
     private bool inReach;
     void Start() {
-        OB = this.gameObject;
+        curObject = this.gameObject;
         handUI.SetActive(false);
         objToActivate.SetActive(false);
     }
@@ -32,9 +32,8 @@ public class UseChest : MonoBehaviour {
         if (inReach && Input.GetButtonDown("Interact")) {
             handUI.SetActive(false);
             objToActivate.SetActive(true);
-            OB.GetComponent<Animator>().SetBool("open", true);
-            OB.GetComponent<BoxCollider>().enabled = false;
+            curObject.GetComponent<Animator>().SetBool("open", true);
+            curObject.GetComponent<BoxCollider>().enabled = false;
         }
     }
-
 }

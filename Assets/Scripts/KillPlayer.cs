@@ -3,9 +3,10 @@ using UnityEngine.SceneManagement;
 
 public class KillPlayer : MonoBehaviour {
     public string nextSceneName;
-    public float delay = 0.5f;
-    public GameObject fadeout;
+    public float delay = 5f;
 
+    // Fade Animation after killed
+    public GameObject fadeout;
     private bool playerInsideTrigger = false;
 
     private void OnTriggerEnter(Collider other) {

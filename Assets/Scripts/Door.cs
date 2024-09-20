@@ -14,11 +14,10 @@ public class Door : MonoBehaviour {
     private bool inReach;
 
     void Start() {
+        // Default Setting for Door open
         handUI.SetActive(false);
         UIText.SetActive(false);
-
         invKey.SetActive(false);
-
         fadeFX.SetActive(false);
     }
 
@@ -54,5 +53,4 @@ public class Door : MonoBehaviour {
         yield return new WaitForSeconds(.6f);
         SceneManager.LoadScene(nextSceneName);
     }
-
 }
