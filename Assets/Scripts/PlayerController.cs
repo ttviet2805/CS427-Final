@@ -2,71 +2,61 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// To auto add CharacterController to GameObject
 [RequireComponent(typeof(CharacterController))]
-public class PlayerController : MonoBehaviour
-{
-    public Camera playerCam;
-
-    // Player Controller
-    CharacterController characterController;
-
-    // Camera Settings:
+public class PlayerController : MonoBehaviour {
+    // Camera Properties
+    public Camera playerCamera;
     public float lookSpeed = 2f;
     public float lookXLimit = 75f;
     public float cameraRotationSmooth = 5f;
 
-    // Camera Zoom Settings:
+    // Camera Zoom Properties
     public int ZoomFOV = 50;
     public int initialFOV = 80;
     public float cameraZoomSmooth = 1;
     private bool isZoomed = false;
 
-    // Moving Properties
-    public float walkSpeed = 3f;
-    public float runSpeed = 20f;
-    public float jumpPower = 0f;
-    public float gravity = 10f;
-    // Can The Player Move
-    private bool canMove = true;
+    // Player Controller
+    CharacterController characterController;
 
+    // Player Properties
     Vector3 moveDirection = Vector3.zero;
     float rotationX = 0;
     float rotationY = 0;
 
-    void Start()
-    {
-        characterController = GetComponent<CharacterController>();
+    public float walkSpeed = 3f;
+    public float runSpeed = 20f;
+    public float defaultGravity = 10f;
 
-        // To lock and hide cursor for shooting and playing
+    private bool canMove = true;
+
+    void Start() {
+        characterController = GetComponent <CharacterController>();
+
+        // Cursor Start Game Setting
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
-    void Update()
-    {
-        // Walking
-        Vector3 forward = transform.TransformDirection(Vector3.forward);
-        // Running
-        Vector3 right = transform.TransformDirection(Vector3.right);
-
-        // Check if player is Running
+    void Update() {
+        // Player Movement
         bool isRunning = Input.GetKey(KeyCode.LeftShift);
+        Vector3 zDir = transform.TransformDirection(Vector3.forward);
+        Vector3 xDir = transform.TransformDirection(Vector3.right);
 
-        float curSpeedX = canMove ? (isRunning ? runSpeed : walkSpeed) * Input.GetAxis("Vertical") : 0;
-        float curSpeedY = canMove ? (isRunning ? runSpeed : walkSpeed) * Input.GetAxis("Horizontal") : 0;
-        moveDirection = (forward * curSpeedX) + (right * curSpeedY);
+        float curSpeed = (isRunning ? runSpeed : walkSpeed);
+        float zSpeed = canMove ? curSpeed * Input.GetAxis("Vertical") : 0;
+        float xSpeed = canMove ? curSpeed * Input.GetAxis("Horizontal") : 0;
+        moveDirection = (zDir * zSpeed) + (xDir * xSpeed); 
 
-        if (!characterController.isGrounded)
-        {
-            moveDirection.y -= gravity * Time.deltaTime;
+        // If player is higher than the ground floor -> Let gravity push player down
+        if (!characterController.isGrounded) {
+            moveDirection.y -= defaultGravity * Time.deltaTime;
         }
-
         characterController.Move(moveDirection * Time.deltaTime);
 
-        // Camera for Movement :
-        if (canMove)
-        {
+        // Camera Setting
+        if (canMove) {
             rotationX -= Input.GetAxis("Mouse Y") * lookSpeed;
             rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
 
@@ -75,27 +65,17 @@ public class PlayerController : MonoBehaviour
             Quaternion targetRotationX = Quaternion.Euler(rotationX, 0, 0);
             Quaternion targetRotationY = Quaternion.Euler(0, rotationY, 0);
 
-            playerCam.transform.localRotation = Quaternion.Slerp(playerCam.transform.localRotation, targetRotationX, Time.deltaTime * cameraRotationSmooth);
+            playerCamera.transform.localRotation = Quaternion.Slerp(playerCamera.transform.localRotation, targetRotationX, Time.deltaTime * cameraRotationSmooth);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotationY, Time.deltaTime * cameraRotationSmooth);
         }
 
-        // Zooming:
-        if (Input.GetButtonDown("Fire2"))
-        {
-            isZoomed = true;
-        }
-        if (Input.GetButtonUp("Fire2"))
-        {
-            isZoomed = false;
-        }
-        float cameraZoom = Time.deltaTime * cameraZoomSmooth;
+        // Zoom Action:
+        if (Input.GetButtonDown("Fire2")) isZoomed = true;
+        if (Input.GetButtonUp("Fire2")) isZoomed = false;
+
         if (isZoomed)
-        {
-            playerCam.GetComponent<Camera>().fieldOfView = Mathf.Lerp(playerCam.fieldOfView, ZoomFOV, cameraZoom);
-        }
+            playerCamera.GetComponent<Camera>().fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, ZoomFOV, Time.deltaTime * cameraZoomSmooth);
         else
-        {
-            playerCam.GetComponent<Camera>().fieldOfView = Mathf.Lerp(playerCam.fieldOfView, initialFOV, cameraZoom);
-        }
+            playerCamera.GetComponent<Camera>().fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, initialFOV, Time.deltaTime * cameraZoomSmooth);
     }
 }
