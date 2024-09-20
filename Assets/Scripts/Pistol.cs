@@ -9,7 +9,6 @@ public class Pistol : MonoBehaviour
     // Maximum ammo capacity in the storage
     public int maxAmmoInStorage = 0;
     public float shootCooldown = 0.75f;
-    public float reloadCooldown = 0.5f;
     private float switchCooldown = 0.5f;
     public float shootRange = 250f;
 
@@ -18,7 +17,6 @@ public class Pistol : MonoBehaviour
     public int damager;   // Current ammo in the storage
     public bool canShoot = true;       // Flag to check if shooting is allowed
     public bool canSwitch = true;       // Flag to check if shooting is allowed
-    private bool isReloading = false;   // Flag to check if reloading is in progress
     private float shootTimer;           // Timer for shoot cooldown
 
     // Ejection point of the cartridge
@@ -51,7 +49,7 @@ public class Pistol : MonoBehaviour
         currentAmmoInStorage = Mathf.Clamp(currentAmmoInStorage, 0, maxAmmoInStorage);
 
         // Check for shoot input
-        if (Input.GetButtonDown("Fire1") && canShoot && !isReloading)
+        if (Input.GetButtonDown("Fire1") && canShoot)
         {
             switchCooldown = shootCooldown;
             Shoot();
@@ -64,11 +62,9 @@ public class Pistol : MonoBehaviour
         }
     }
 
-    void Shoot()
-    {
+    void Shoot() {
         // Check if there is ammo in the magazine
-        if (currentAmmoInMag > 0 && shootTimer <= 0f)
-        {
+        if (currentAmmoInMag > 0 && shootTimer <= 0f) {
             canSwitch = false;
             shoot.Play();
             muzzleFlash.Play();
@@ -77,8 +73,7 @@ public class Pistol : MonoBehaviour
 
             // Perform the shoot action
             RaycastHit hit;
-            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootRange))
-            {
+            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootRange)) {
                 // Instantiate impact effect at the hit point
                 Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
             }
@@ -104,21 +99,17 @@ public class Pistol : MonoBehaviour
         }
     }
 
-    IEnumerator endAnimations()
-    {
+    IEnumerator endAnimations() {
         yield return new WaitForSeconds(.1f);
         gun.SetBool("shoot", false);
-        //gun.SetBool("reload", false);
     }
 
-    IEnumerator endLight()
-    {
+    IEnumerator endLight() {
         yield return new WaitForSeconds(.1f);
         muzzleFlashLight.SetActive(false);
     }
 
-    IEnumerator canswitchshoot()
-    {
+    IEnumerator canswitchshoot() {
         yield return new WaitForSeconds(shootCooldown);
         canSwitch = true;
     }

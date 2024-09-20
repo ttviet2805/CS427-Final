@@ -1,10 +1,7 @@
 ﻿using UnityEngine;
 
-public class CursorControl : MonoBehaviour
-{
-    private void Start()
-    {
-        // Make the cursor visible and unlock it
+public class CursorControl : MonoBehaviour {
+    private void Start() {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }

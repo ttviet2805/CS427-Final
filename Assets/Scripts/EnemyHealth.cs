@@ -1,39 +1,22 @@
 ﻿using UnityEngine;
 using System;
 
-public class EnemyHealth : MonoBehaviour
-{
-    public int maxHealth = 100; // Maximum health of the enemy.
-    private int currentHealth; // Current health of the enemy.
+public class EnemyHealth : MonoBehaviour {
+    public int maxHealth = 100;
+    private int currentHealth;
 
-    // Called when the enemy is initialized.
-    private void Start()
-    {
-        currentHealth = maxHealth; // Set the initial health to the maximum health.
-
+    private void Start() {
+        currentHealth = maxHealth;
     }
 
-    // Function to apply damage to the enemy.
-    public void TakeDamage(int damageAmount)
-    {
-        // Reduce the current health by the damage amount.
+    public void TakeDamage(int damageAmount) {
         currentHealth -= damageAmount;
         Debug.Log(currentHealth);
-
-        // Check if the enemy's health has reached zero or below.
         if (currentHealth <= 0)
-        {
-            Die(); // Call the function to handle the enemy's death.
-        }
+            Die();
     }
 
-    // Function to handle the enemy's death.
-    private void Die()
-    {
-        // Perform any death-related actions here, such as playing death animations, spawning effects, or removing the enemy from the scene.
-        // You can customize this method based on your game's requirements.
-
-        // For example, you might destroy the enemy GameObject:
+    private void Die() {
         gameObject.GetComponent<Animator>().SetBool("Death", true);
     }
 }

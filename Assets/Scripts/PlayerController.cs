@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour {
     float rotationY = 0;
 
     public float walkSpeed = 3f;
-    public float runSpeed = 20f;
+    public float runSpeed = 6f;
     public float defaultGravity = 10f;
 
     private bool canMove = true;
