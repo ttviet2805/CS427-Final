@@ -74,6 +74,12 @@ public class Pistol : MonoBehaviour
             // Perform the shoot action
             RaycastHit hit;
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootRange)) {
+                if (hit.collider.CompareTag("Enemy")) {
+                    Debug.Log("HEHE");
+                    EnemyHealth enemyHealth = hit.collider.GetComponent<EnemyHealth>();
+                    if (enemyHealth != null)
+                        enemyHealth.TakeDamage(damager);
+                }
                 // Instantiate impact effect at the hit point
                 Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
             }
