@@ -6648,7 +6648,7 @@ MonoBehaviour:
   UIText: {fileID: 1481826785}
   invKey: {fileID: 747372365}
   fadeFX: {fileID: 1001504912}
-  nextSceneName: Scene1
+  nextSceneName: Scene5
 --- !u!65 &1749439962
 BoxCollider:
   m_ObjectHideFlags: 0
