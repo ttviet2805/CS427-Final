@@ -4480,6 +4480,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8391222552659086748, guid: eca5f318c50c16f45b8f865ebd583da0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -6019679308074869713, guid: eca5f318c50c16f45b8f865ebd583da0, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -4962,7 +4966,7 @@ MonoBehaviour:
   UIText: {fileID: 1481826785}
   invKey: {fileID: 747372365}
   fadeFX: {fileID: 1001504912}
-  nextSceneName: Scene1
+  nextSceneName: Scene8
 --- !u!65 &1749439962
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5043,7 +5047,7 @@ Transform:
   m_GameObject: {fileID: 1749439960}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -25.7, y: 2.19, z: 33.93}
+  m_LocalPosition: {x: -17.2, y: 2.19, z: 15.3}
   m_LocalScale: {x: 2.03, y: 3.67, z: 0.26}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5497,7 +5501,7 @@ Transform:
   m_GameObject: {fileID: 1970361353}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 27.9, y: 1.56, z: -28.2}
+  m_LocalPosition: {x: 17.5, y: 1.56, z: -21}
   m_LocalScale: {x: 1, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

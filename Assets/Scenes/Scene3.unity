@@ -1689,11 +1689,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!1 &285092100 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 19ea60034f0cd554882092e7f5abc4d0, type: 3}
-  m_PrefabInstance: {fileID: 40442901}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &454142058
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3395,7 +3390,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 904bd775aff58054f92f9667cc6aabbe, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.6844616
+      value: -9.3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 904bd775aff58054f92f9667cc6aabbe, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3403,7 +3398,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 904bd775aff58054f92f9667cc6aabbe, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.1223221
+      value: -0.4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 904bd775aff58054f92f9667cc6aabbe, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3542,7 +3537,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handUI: {fileID: 657977458}
-  objToActivate: {fileID: 285092100}
+  objToActivate: {fileID: 747372365}
 --- !u!95 &833643174
 Animator:
   serializedVersion: 5
@@ -4883,7 +4878,7 @@ Transform:
   m_GameObject: {fileID: 1749439960}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -23.2, y: 2.19, z: 29.5}
+  m_LocalPosition: {x: 8.4, y: 2.19, z: 17.5}
   m_LocalScale: {x: 2.03, y: 3.67, z: 0.26}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5063,7 +5058,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8391222552659086748, guid: 5fe1cdb83ccd47e4aa95e2dd30e383bf, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -6019679308074869713, guid: 5fe1cdb83ccd47e4aa95e2dd30e383bf, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -5501,7 +5496,7 @@ Transform:
   m_GameObject: {fileID: 1970361353}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 27.9, y: 1.56, z: -28.2}
+  m_LocalPosition: {x: -9.9, y: 1.56, z: -1.4}
   m_LocalScale: {x: 1, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
