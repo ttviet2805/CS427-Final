@@ -2892,7 +2892,7 @@ MonoBehaviour:
   currentAmmoInMag: 0
   currentAmmoInStorage: 0
   damager: 20
-  canShoot: 0
+  canShoot: 1
   canSwitch: 1
   cartridgeEjectionPoint: {fileID: 537900531}
   cartridgePrefab: {fileID: 988347902634677893, guid: 9b1c8bcd0702f6e4d949acf6020d7372, type: 3}
@@ -4236,6 +4236,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a2f1b04c8bff194cbfc66d228b8c6ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  idleTime: 4
+  walkSpeed: 2.5
+  chaseSpeed: 4
+  sightDistance: 30
   waypoints:
   - {fileID: 1226782500}
   - {fileID: 1677997839}
@@ -4243,10 +4247,6 @@ MonoBehaviour:
   - {fileID: 101122438}
   - {fileID: 497418776}
   - {fileID: 1859119904}
-  idleTime: 4
-  walkSpeed: 2.5
-  chaseSpeed: 4
-  sightDistance: 30
   idleSound: {fileID: 8300000, guid: 727cc9b5b68ce4a4da1968c42eda6842, type: 3}
   walkingSound: {fileID: 8300000, guid: 727cc9b5b68ce4a4da1968c42eda6842, type: 3}
   chasingSound: {fileID: 8300000, guid: 14ba1465b94f97242abee9521cae3db2, type: 3}
