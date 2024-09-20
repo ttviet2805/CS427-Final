@@ -30,6 +30,15 @@ public class PlayerController : MonoBehaviour {
 
     private bool canMove = true;
 
+    // Audio Sounds
+    public AudioClip[] woodFootstepSounds;
+    public Transform footstepAudioPosition;
+    public AudioSource audioSource;
+
+    private bool isWalking = false;
+    private bool isFootstepCoroutineRunning = false;
+    private AudioClip[] currentFootstepSounds;
+
     void Start() {
         characterController = GetComponent <CharacterController>();
 
@@ -77,5 +86,34 @@ public class PlayerController : MonoBehaviour {
             playerCamera.GetComponent<Camera>().fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, ZoomFOV, Time.deltaTime * cameraZoomSmooth);
         else
             playerCamera.GetComponent<Camera>().fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, initialFOV, Time.deltaTime * cameraZoomSmooth);
+    
+        // Walking and Running Sound
+        if ((zSpeed != 0f || xSpeed != 0f) && !isWalking && !isFootstepCoroutineRunning) {
+            isWalking = true;
+            StartCoroutine(PlayFootstepSounds(1.3f / (isRunning ? runSpeed : walkSpeed)));
+        }
+        else if (zSpeed == 0f && xSpeed == 0f) {
+            isWalking = false;
+        }
+    }
+
+    IEnumerator PlayFootstepSounds(float footstepDelay) {
+        isFootstepCoroutineRunning = true;
+        while (isWalking) {
+            if (currentFootstepSounds.Length > 0) {
+                int randomIndex = Random.Range(0, currentFootstepSounds.Length);
+                audioSource.transform.position = footstepAudioPosition.position;
+                audioSource.clip = currentFootstepSounds[randomIndex];
+                audioSource.Play();
+                yield return new WaitForSeconds(footstepDelay);
+            }
+            else yield break;
+        }
+        isFootstepCoroutineRunning = false;
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        if (other.CompareTag("Wood"))
+            currentFootstepSounds = woodFootstepSounds;
     }
 }
